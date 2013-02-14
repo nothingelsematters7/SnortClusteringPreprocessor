@@ -1,3 +1,12 @@
+#include <stdint.h>
+#include <stdbool.h>
+#include <sf_dynamic_meta.h>
+#include <sf_dynamic_preprocessor.h>
+// #include <sf_dynamic_engine.h>
+#include <sf_snort_packet.h>
+#include <sf_snort_plugin_api.h>
+
+
 #define GENERATOR_EXAMPLE 256
 
 extern DynamicPreprocessorData _dpd;
@@ -16,7 +25,7 @@ void ExampleProcess(void *, void *);
 
 void ExampleSetup()
 {
-    _dpd.registerPreproc("dynamic_example", ExampleInit);
+    _dpd.registerPreproc("dynamic_example", ExampleInit, 0, 0, 0);
 
     DEBUG_WRAP(_dpd.debugMsg(DEBUG_PLUGIN, "Preprocessor: Example is setup\n"););
 }
@@ -58,7 +67,7 @@ void ExampleInit(unsigned char *args)
     }
 
     /* Register the preprocessor function, Transport layer, ID 10000 */
-    _dpd.addPreproc(ExampleProcess, PRIORITY_TRANSPORT, 10000);
+    _dpd.addPreproc(ExampleProcess, PRIORITY_TRANSPORT, 10000, 0);
 
     DEBUG_WRAP(_dpd.debugMsg(DEBUG_PLUGIN, "Preprocessor: Example is initialized\n"););
 }
