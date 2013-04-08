@@ -15,6 +15,7 @@ last edited: October 2011
 
 import sys
 from PyQt4 import QtGui
+from widgets import AlgSettingsWidget
 
 class Example(QtGui.QWidget):
     
@@ -24,12 +25,17 @@ class Example(QtGui.QWidget):
         self.initUI()
         
     def initUI(self):
+
+        self.btn = QtGui.QPushButton('Dialog text', self)
+        self.btn.move(20, 20)
+        self.btn.clicked.connect(self.showDialog)
         
         title = QtGui.QLabel('Title')
         author = QtGui.QLabel('Author')
         review = QtGui.QLabel('Review')
 
         titleEdit = QtGui.QLineEdit()
+        self.titleEdit = titleEdit
         authorEdit = QtGui.QLineEdit()
         reviewEdit = QtGui.QTextEdit()
 
@@ -44,12 +50,20 @@ class Example(QtGui.QWidget):
 
         grid.addWidget(review, 3, 0)
         grid.addWidget(reviewEdit, 3, 1, 5, 1)
+
+        self.settings = AlgSettingsWidget(['Source Port', 'Destination Port', 'App Name', 'Protocol Name'])
+        grid.addWidget(self.settings, 4, 0)
         
         self.setLayout(grid) 
         
         self.setGeometry(300, 300, 350, 300)
         self.setWindowTitle('Review')    
         self.show()
+
+    def showDialog(self):
+        
+        fname = QtGui.QFileDialog.getOpenFileName(self, 'Open file', os.curdir)
+            self.le.setText(fname)
         
 def main():
     
