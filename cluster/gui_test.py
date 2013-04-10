@@ -45,6 +45,17 @@ class Example(QtGui.QMainWindow):
         qbtn.resize(qbtn.sizeHint())
         qbtn.move(50, 150)
 
+        combo = QtGui.QComboBox(self)
+        combo.addItem("Ubuntu")
+        combo.addItem("Mandriva")
+        combo.addItem("Fedora")
+        combo.addItem("Red Hat")
+        combo.addItem("Gentoo")
+
+        combo.move(50, 100)
+
+        # combo.activated[str].connect(self.onActivated)    
+
         exitAction = QtGui.QAction(QtGui.QIcon('exit.svg'), '&Exit', self)        
         exitAction.setShortcut('Ctrl+Q')
         exitAction.setStatusTip('Exit application')

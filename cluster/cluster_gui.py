@@ -13,7 +13,10 @@ last edited: October 2011
 """
 
 import sys
+import os
 from PyQt4 import QtGui, QtCore
+from widgets import AlgSettingsWidget
+from cluster import NetworkDataFile
 
 
 class Example(QtGui.QMainWindow):
@@ -52,10 +55,15 @@ class Example(QtGui.QMainWindow):
             for j in range(3):
                 self.table.setItem(i, j, QtGui.QTableWidgetItem(str(i * j)))
 
-        openFileAction = QtGui.QAction(QtGui.QIcon.fromTheme('document-open'), '&Open file', self)
-        openFileAction.setShortcut('Ctrl+O')
-        openFileAction.setStatusTip('Open data file')
-        openFileAction.triggered.connect(self.openFile)
+        openTrainingDataSet = QtGui.QAction(QtGui.QIcon.fromTheme('document-open'), '&Open training data set', self)
+        openTrainingDataSet.setShortcut('Ctrl+O')
+        openTrainingDataSet.setStatusTip('Open training data set')
+        openTrainingDataSet.triggered.connect(self.openTrainingFile)
+
+        openTestDataSet = QtGui.QAction(QtGui.QIcon.fromTheme('document-open'), '&Open test data set', self)
+        openTestDataSet.setShortcut('Ctrl+T')
+        openTestDataSet.setStatusTip('Open test data set')
+        openTestDataSet.triggered.connect(self.openTestFile)
 
         exitAction = QtGui.QAction(QtGui.QIcon('exit.svg'), '&Exit', self)        
         exitAction.setShortcut('Ctrl+Q')
@@ -68,13 +76,15 @@ class Example(QtGui.QMainWindow):
 
         menubar = self.menuBar()
         fileMenu = menubar.addMenu('&File')
-        fileMenu.addAction(openFileAction)
+        fileMenu.addAction(openTrainingDataSet)
+        fileMenu.addAction(openTestDataSet)
         fileMenu.addAction(exitAction)
 
         # Create Tool bar
 
         self.toolbar = self.addToolBar('Exit')
-        self.toolbar.addAction(openFileAction)
+        self.toolbar.addAction(openTrainingDataSet)
+        self.toolbar.addAction(openTestDataSet)
         self.toolbar.addAction(exitAction)
         
         self.resize(500, 400)
@@ -93,10 +103,18 @@ class Example(QtGui.QMainWindow):
         qr.moveCenter(cp)
         self.move(qr.topLeft())
 
-    def openFile(self):
-        fname = QtGui.QFileDialog.getOpenFileName(self, 'Open file', '/home/devil/')
-        self.file_name = fname
-        self.setWindowTitle(self.file_name)
+    def openTrainingFile(self):
+        fname = QtGui.QFileDialog.getOpenFileName(self, 'Open training file', os.curdir)
+        if fname:
+            self.training_file = NetworkDataFile(fname)
+            self.settings = AlgSettingsWidget(self.training_file.columns)
+            self.setCentralWidget(self.settings)
+            self.statusBar().showMessage('Training file selected:' + fname)
+
+    def openTestFile(self):
+        fname = QtGui.QFileDialog.getOpenFileName(self, 'Open test file', os.curdir)
+        self.test_file_name = fname
+        self.statusBar().showMessage('Test file selected:' + fname)
 
 
     def closeEvent(self, event):
