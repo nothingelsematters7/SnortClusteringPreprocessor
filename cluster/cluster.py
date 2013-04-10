@@ -4,9 +4,10 @@ import sys
 
 import csv
 
-NCLUSTERS = 3
+NCLUSTERS = 7
 
 data = []
+labels = []
 
 with open('output.csv', 'rUb') as csvfile:
     reader = csv.reader(csvfile, delimiter=';')
@@ -15,10 +16,16 @@ with open('output.csv', 'rUb') as csvfile:
             continue
         # if reader.line_num == 10000:
         #   break
-        data.append([int(item) for item in row])
+        data.append([int(item) for item in row[:-1]])
+        if row[-1] == '0':
+            labels.append('N')
+        else:
+            labels.append('A')
+        # labels.append('N' if row[-1] == 0 else 'A')
+
+print labels.count('A')
 
 print data[0]
-labels = ['N' if row[-1] == 0 else 'A' for row in data]
 
 average = [0] * len(data[0])
 std = [0] * len(data[0])
