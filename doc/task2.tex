@@ -11,6 +11,7 @@
 \usepackage[left=3cm,right=1.5cm,top=2cm,bottom=2cm]{geometry}
 \usepackage[titletoc]{appendix}
 \usepackage{multicol}
+\usepackage{multirow}
 \usepackage[labelsep=endash]{caption}
 
 \pdfcompresslevel=9
@@ -77,9 +78,9 @@ $\forall m(x_i, x_j)$ определить $m(x_i, x_j) \in M_A$
 		\hline
 
 		\hline
-		\multicolumn{2}{|c|}{\textbf{Выборка}} & \multicolumn{2}{|c|}{\textbf{Коэффициент}}\\
+		\multicolumn{2}{|l|}{\textbf{\hspace{35pt}Выборка}} & \multicolumn{2}{|l|}{\textbf{\hspace{45pt}Коэффициент}}\\
 
-		\multicolumn{1}{|c}{\textbf{обучающая}} & \multicolumn{1}{c|}{\textbf{тестовая}} & \multicolumn{1}{|c}{\textbf{обнаружения}} & \multicolumn{1}{c|}{\textbf{ложных срабатываний}} \\
+		\multicolumn{1}{|c|}{\textbf{обучающая}} & \multicolumn{1}{|c|}{\textbf{тестовая}} & \multicolumn{1}{|c|}{\textbf{обнаружения}} & \multicolumn{1}{|c|}{\textbf{ложных срабатываний}} \\
 		\hline P10 & P1  & 55.7   \% & 0.99  \% \\
 		\hline P10 & P2  & 51.04  \% & 1.58  \% \\
 		\hline P10 & P3  & 53.01  \% & 1.67  \% \\
@@ -109,11 +110,12 @@ $\forall m(x_i, x_j)$ определить $m(x_i, x_j) \in M_A$
 	\caption{Test table 2}
 	\label{table:fix_width}
 	\begin{center}
-		\begin{tabular}{|l|l|l|l|}
+		\begin{tabular}{|c|c|c|c|}
 		\hline
 
 		\hline
-		\textbf{W} & \textbf{N} & \textbf{Коэффициент обнаружения} & \textbf{Коэффициент ложных срабатываний} \\
+		\multirow{2}{*}{\textbf{W}} & \multirow{2}{*}{\textbf{N}} & \multicolumn{2}{|l|}{\textbf{\hspace{45pt}Коэффициент}} \\
+		& & \multicolumn{1}{|c|}{\textbf{обнаружения}} & \multicolumn{1}{|c|}{\textbf{ложных срабатываний}} \\
 		\hline 20 & 15 \% & 35.7 \% & 1.44 \% \\
 		\hline 20 & 7 \% & 66.2 \% & 2.7 \% \\
 		\hline 20 & 2 \% & 88 \% & 8.14 \% \\
@@ -130,11 +132,12 @@ $\forall m(x_i, x_j)$ определить $m(x_i, x_j) \in M_A$
 	\caption{Test table 3}
 	\label{table:fix_n}
 	\begin{center}
-		\begin{tabular}{|l|l|l|l|}
+		\begin{tabular}{|c|c|c|c|}
 		\hline
 
 		\hline
-		\textbf{W} & \textbf{N} & \textbf{Коэффициент обнаружения} & \textbf{Коэффициент ложных срабатываний} \\
+		\multirow{2}{*}{\textbf{W}} & \multirow{2}{*}{\textbf{N}} & \multicolumn{2}{|l|}{\textbf{\hspace{45pt}Коэффициент}} \\
+		& & \multicolumn{1}{|c|}{\textbf{обнаружения}} & \multicolumn{1}{|c|}{\textbf{ложных срабатываний}} \\
 		\hline 30 & 15 \% & 28.1  \% & 1.07 \% \\
 		\hline 40 & 15 \% & 30.77 \% & 0.84 \% \\
 		\hline 60 & 15 \% & 31.9  \% & 0.7  \% \\
