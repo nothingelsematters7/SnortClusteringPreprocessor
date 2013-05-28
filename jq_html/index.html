@@ -1,0 +1,51 @@
+<html>
+
+<body>
+    <head>
+  <style>
+  div { width:60px; height:60px; margin:5px; float:left;
+        border:2px white solid;}
+  </style>
+
+<script src="js/jquery-1.9.1.js"></script>
+<script>
+$(function () {
+
+  var arr = $.map($("LI"), function(item, index){
+    if (index < 3) {
+      return $(item).html();
+    }
+    return null;
+  });
+
+  $(document.body).append("<span>The first three authors are: " + arr.join(", ") + "</span>");
+});
+</script>
+</head>
+</body>
+
+<h1>jQuery Cookbook Authors</h1>
+<ol>
+  <li>John Resig</li>
+  <li>Cody Lindley</li>
+  <li>James Padolsey</li>
+  <li>Ralph Whitbeck</li>
+  <li>Jonathan Sharp</li>
+  <li>Michael Geary</li>
+  <li>Scott González</li>
+  <li>Rebecca Murphey</li>
+  <li>Remy Sharp</li>
+  <li>Ariel Flesler</li>
+  <li>Brian Cherne</li>
+  <li>Jörn Zaefferer</li>
+  <li>Mike Hostetler</li>
+  <li>Nathan Smith</li>
+  <li>Richard D. Worth</li>
+  <li>Maggie Wachs</li>
+  <li>Scott Jehl</li>
+  <li>Todd Parker</li>
+  <li>Patty Toland</li>
+  <li>Rob Burns</li>
+</ol>
+
+</html>
